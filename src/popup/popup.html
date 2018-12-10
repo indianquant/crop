@@ -1,0 +1,78 @@
+<!doctype html>
+<style type="text/css">
+	#mainPopup {
+		padding: 2px;
+		width: 80px;
+		font-family: Helvetica, Ubuntu, Arial, sans-serif;
+	}
+
+  .oho-switch {
+      margin: 0 auto;
+      position: relative; width: 70px;
+      -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+      transition: opacity 0.2s ease-in;
+      opacity: 0;
+  }
+    .oho-switch.show {
+      opacity: 1;
+    }
+  .oho-switch-checkbox {
+      display: none;
+  }
+  .oho-switch-label {
+      display: block; overflow: hidden; cursor: pointer;
+      border: 2px solid #FFFFFF; border-radius: 22px;
+  }
+  .oho-switch-inner {
+      display: block; width: 200%; margin-left: -100%;
+      transition: margin 0.2s ease-in 0s;
+  }
+    .oho-switch-no-anim .oho-switch-inner {
+      transition: none;
+    }
+  .oho-switch-inner:before, .oho-switch-inner:after {
+      display: block; float: left; width: 50%; height: 22px; padding: 0; line-height: 22px;
+      font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+      box-sizing: border-box;
+  }
+  .oho-switch-inner:before {
+      content: "ON";
+      padding-left: 10px;
+      background-color: #47F53B; color: #FFFFFF;
+  }
+  .oho-switch-inner:after {
+      content: "OFF";
+      padding-right: 10px;
+      background-color: #DDDDDD; color: #999999;
+      text-align: right;
+  }
+  .oho-switch-switch {
+      display: block; width: 16px; margin: 3px;
+      background: #FFFFFF;
+      position: absolute; top: 0; bottom: 0;
+      right: 44px;
+      border: 2px solid #FFFFFF; border-radius: 22px;
+      transition: all 0.2s ease-in 0s;
+  }
+    .oho-switch-no-anim .oho-switch-switch {
+      transition: none;
+    }
+  .oho-switch-checkbox:checked + .oho-switch-label .oho-switch-inner {
+      margin-left: 0;
+  }
+  .oho-switch-checkbox:checked + .oho-switch-label .oho-switch-switch {
+      right: 0px;
+  }
+</style>
+
+<div id="mainPopup">
+  <div class="oho-switch">
+    <input type="checkbox" name="oho-switch" class="oho-switch-checkbox" id="oho-switch" checked>
+    <label class="oho-switch-label" for="oho-switch">
+      <span class="oho-switch-inner"></span>
+      <span class="oho-switch-switch"></span>
+    </label>
+  </div>
+</div>
+
+<script src="popup.js"></script>

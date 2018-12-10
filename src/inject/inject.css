@@ -1,0 +1,150 @@
+.oho-processed {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url('chrome-extension://__MSG_@@extension_id__/resources/camera.png');
+  background-size: contain;
+  max-width: 100%;
+  min-width: 50px;
+  height: auto;
+}
+
+.oho-overlay {
+  position: fixed;
+  z-index: 19890209;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.18);
+  /*display: none;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+  .oho-overlay--show {
+    /*display: block;*/
+    opacity: 1;
+  }
+
+.oho-modal {
+  position: relative;
+  /*position: absolute;*/
+  /*left: 50%;*/
+  /*top: 50%;*/
+  /*transform: translate(-50%, -50%);*/
+  overflow: hidden;
+  display: block;
+  padding: 20px 10px 6px;
+  border: 2px solid #bfbfbf;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.15);
+
+  transition: opacity .4s ease 0s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+  .oho-overlay--show .oho-modal,
+  .oho-modal--show {
+    pointer-events: all;
+    opacity: 1;
+  }
+
+  .oho-modal__close {
+    position: absolute;
+    display: block;
+    right: -1px;
+    top: -1px;
+    padding: 2px;
+    line-height: 1;
+    width: 18px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    color: currentColor;
+  }
+
+  .oho-modal__frame {
+    height: 300px;
+    width: 400px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url('chrome-extension://__MSG_@@extension_id__/resources/loader.gif');
+  }
+
+  .oho-modal__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6px;
+  }
+
+.oho-label {
+  display: flex;
+  margin-bottom: 10px;
+  line-height: 18px;
+}
+
+  .oho-label span {
+    margin-right: 4px;
+  }
+
+.oho-select {
+  flex: 1;
+}
+
+.oho-video {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+}
+
+/*  .oho-video:after {
+    position: absolute;
+    z-index: 99999999999;
+    content: '';
+    display: block;
+    height: 8px;
+    width: 8px;
+    right: 10px;
+    top: 10px;
+    border-radius: 50%;
+    background-color: red;
+  }*/
+
+.oho-canvas-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.oho-canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.oho-button {
+  margin: 0 3px;
+  /*border: 2px solid #bfbfbf;
+  background-color: #fff;
+  transition: background-color .2s;*/
+  transition: all .2s;
+}
+
+  /* .oho-button:hover {
+    background-color: #efefef;
+  } */
+
+  .oho-button[disabled] {
+    opacity: .65;
+    pointer-events: none;
+  }
+
+.oho-hidden {
+  display: none;
+}

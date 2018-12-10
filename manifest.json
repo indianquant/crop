@@ -1,0 +1,32 @@
+{
+   "author": "Paul B. \u003Cpaul.coder@gmail.com>",
+   "background": {
+      "page": "src/bg/background.html"
+   },
+   "browser_action": {
+      "default_icon": "icons/icon19.png",
+      "default_popup": "src/popup/popup.html",
+      "default_title": "TBOCWWB Webcam Helper"
+   },
+   "content_scripts": [ {
+      "css": [ "libs/cropperjs/cropper.min.css", "src/inject/inject.css" ],
+      "js": [ "libs/cropperjs/cropper.min.js", "src/inject/inject.js" ],
+      "matches": [ "*://challa.pashog.net/demo.php*", "*://tbocwwb.telangana.gov.in/WorkerRegistration*" ],
+      "run_at": "document_end"
+   } ],
+   "default_locale": "en",
+   "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt!",
+   "homepage_url": "https://pashog.net",
+   "icons": {
+      "128": "icons/icon128.png",
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+   },
+
+   "manifest_version": 2,
+   "name": "TBOCWWB Webcam Helper",
+   "permissions": [ "storage", "*://challa.pashog.net/demo.php*", "*://tbocwwb.telangana.gov.in/WorkerRegistration*" ],
+   
+   "version": "0.0.4",
+   "web_accessible_resources": [ "resources/loader.gif", "resources/camera.png" ]
+}
