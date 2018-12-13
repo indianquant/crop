@@ -6,18 +6,18 @@ const fileInputs  = [
     file:   'input[type="file"]#uploadImage',
     img:    '#pic_container img',
     input:  'input[type="hidden"]#hiddenval',
-    name:   'photo-[rand].jpg',
+    name:   'photo[rand].jpg',
     format: 'image/jpeg',
     maxSize: 10000    // 10KB
   },
-  {
-    file:   'input[type="file"]#manual_application',
-    img:    'img#app_img',
-    input:  'input[type="hidden"]#app_hid',
-    name:   'application-[rand].jpg',
-    format: 'image/jpeg',
-    maxSize: 100000   // 100KB
-  }
+  // {
+  //   file:   'input[type="file"]#manual_application',
+  //   img:    'img#app_img',
+  //   input:  'input[type="hidden"]#app_hid',
+  //   name:   'application[rand].jpg',
+  //   format: 'image/jpeg',
+  //   maxSize: 100000   // 100KB
+  // }
 ];
 
 const $debugLog = document.getElementById('oho-debug');
@@ -334,7 +334,7 @@ function ohoInitCamera(constraints) {
             _cropper.crop();
 
             cropData = {
-              top:    0,
+              top:    2,
               left:   0,
               width:  canvasData.naturalWidth,
               height: canvasData.naturalHeight
@@ -354,39 +354,70 @@ function ohoInitCamera(constraints) {
           // console.log("NEWWWWW");
 
          // should be this---> var dataURL = _cropper.getCroppedCanvas().toDataURL('image/jpeg');
-         var dataURL = $canvas.toDataURL('image/jpeg'); //works pretty well but without cropping it is
+         // var dataURL = $canvas.toDataURL('image/jpeg'); //works pretty well but without cropping it is
+         const canvasData = _cropper.getData();
+         console.log(canvasData.x);
+         var ans;
+         function toDataURL(src, callback, outputFormat) {
+                     var img = new Image();
+                     img.crossOrigin = 'Anonymous';
+                     img.onload = function() {
+                       var canvas = document.createElement('CANVAS');
+                       var ctx = canvas.getContext('2d');
+                       var dataURL;
+                       canvas.height = 100;
+                       canvas.width = 100;
+                       ctx.drawImage(this, 0, 0);
+                       dataURL = canvas.toDataURL(outputFormat);
+                       callback(dataURL);
+                     };
+                     img.src = src;
+                     if (img.complete || img.complete === undefined) {
+                       img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+                       img.src = src;
+                     }
+                   };
+                   var dataURL = $canvas.toDataURL('image/jpeg');
+
+                   toDataURL(
+                     $canvas.toDataURL('image/jpeg'),
+                     function(dataUrl) {
+                       console.log('RESULT:', dataUrl)
+                       ans = dataUrl;
+                     })
+                     console.log("2222");
          // try the base64 in working.txt, put that string in dataURL
 
 //          console.log(getImageDataSize(dataURL, _currentField.format));
 
 
-          if (getImageDataSize(dataURL, _currentField.format) > _currentField.maxSize) {
-            console.log("Inside 2");
-
-            if (confirm('Photo size is more than ' + _currentField.maxSize / 1000 + 'KB. It will be automatically resized and its quality will be reduced, click Ok if yes')) {
-              let ratio = 1;
-
-              while (getImageDataSize(dataURL, _currentField.format) > _currentField.maxSize && ratio > 0) {
-                ratio -= 0.125;
-
-                // _cropper.scale(ratio);
-                // dataURL = _cropper.getCroppedCanvas().toDataURL(_currentField.format);
-
-                let canvas = $canvas;
-
-                let canvasCopy = document.createElement('canvas');
-                    canvasCopy.width  = canvas.width  * ratio;
-                    canvasCopy.height = canvas.height * ratio;
-
-                let copyContext = canvasCopy.getContext('2d');
-                    copyContext.drawImage(canvas, 0, 0, canvasCopy.width, canvasCopy.height);
-
-                dataURL = canvasCopy.toDataURL(_currentField.format);
-                console.log(ratio);
-              }
-            }
-          }
-
+          // if (getImageDataSize(dataURL, _currentField.format) > _currentField.maxSize) {
+          //   console.log("Inside 2");
+          //
+          //   if (confirm('Photo size is more than ' + _currentField.maxSize / 1000 + 'KB. It will be automatically resized and its quality will be reduced, click Ok if yes')) {
+          //     let ratio = 1;
+          //
+          //     while (getImageDataSize(dataURL, _currentField.format) > _currentField.maxSize && ratio > 0) {
+          //       ratio -= 0.125;
+          //
+          //       // _cropper.scale(ratio);
+          //       // dataURL = _cropper.getCroppedCanvas().toDataURL(_currentField.format);
+          //
+          //       let canvas = $canvas;
+          //
+          //       let canvasCopy = document.createElement('canvas');
+          //           canvasCopy.width  = canvas.width  * ratio;
+          //           canvasCopy.height = canvas.height * ratio;
+          //
+          //       let copyContext = canvasCopy.getContext('2d');
+          //           copyContext.drawImage(canvas, 0, 0, canvasCopy.width, canvasCopy.height);
+          //
+          //       dataURL = canvasCopy.toDataURL(_currentField.format);
+          //       console.log(ratio);
+          //     }
+          //   }
+          // }
+          //
 
           console.log("-_-");
           document.getElementById('idproofno[0]').value=8;
